@@ -1,0 +1,36 @@
+
+  <form>
+    <div class="form-group form-inline">
+      Buscar: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="_clientesService.searchTerm"/>
+      <span class="ml-3" *ngIf="_clientesService.loading$ | async">Cargando...</span>
+  </div>
+</form>
+<div>
+  <div class="card">
+
+
+    <div class="card-body">
+      <h5 class="card-title">{{titleTable}}</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Contacto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of clientes">
+         <th>{{item.id_cliente}}</th>
+        <th>{{item.nombre}}</th>
+        <th>{{item.direccion}}</th>
+        <th>{{item.telefono}}</th>
+      </tr>
+   </tbody>
+  </table>
+
+
+</div>
+</div>
+</div>
