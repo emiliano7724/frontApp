@@ -1,0 +1,128 @@
+
+<div class="example-flex-container">
+  <button mat-raised-button color="secondary" (click)="volver()">Volver
+    <mat-icon><span class="material-icons">
+        chevron_left
+      </span></mat-icon>
+  </button>
+</div>
+<br>
+<div class="main-div">
+
+
+<mat-card class="example-card">
+  <mat-card-header>
+
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title></mat-card-title>
+
+      <p> Nuevo </p> <h2>{{titleSingular}}</h2>
+
+    <mat-card-subtitle></mat-card-subtitle>
+
+  </mat-card-header>
+  <mat-card-content>
+
+    <hr>
+
+      <form class="example-container" [formGroup]="this.formNuevoCliente">
+
+
+
+          <mat-form-field  appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre">
+
+            <mat-error *ngIf="this.formNuevoCliente.get('nombre')?.dirty">{{validaRequiredField()}}</mat-error>
+
+
+          </mat-form-field>
+
+
+          <mat-form-field  appearance="fill">
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="telefono">
+            <mat-error *ngIf="this.formNuevoCliente.get('telefono')?.dirty">{{validaRequiredField()}}</mat-error>
+
+
+
+          </mat-form-field>
+
+          <mat-form-field  appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+
+            <mat-error *ngIf="this.formNuevoCliente.get('email')?.dirty">{{validaEmail()}}</mat-error>
+          </mat-form-field>
+
+
+
+
+        <br>
+
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Categoria Iva</mat-label>
+
+            <mat-select formControlName="id_categoria_iva">
+              <mat-option value=1>Responsable Inscripto</mat-option>
+              <mat-option value=2>Monotributo</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Cuit</mat-label>
+            <input matInput formControlName="cuit">
+            <mat-error *ngIf="this.formNuevoCliente.get('cuit')?.dirty">{{validaRequiredField()}}</mat-error>
+
+          </mat-form-field>
+
+
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Localidad</mat-label>
+
+
+            <mat-select formControlName="id_localidad">
+              <mat-option value=1>Santa Fe</mat-option>
+              <mat-option value=2>Cordoba</mat-option>
+              <mat-option value=3>Santa Cruz</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field  appearance="fill">
+            <mat-label>Dirección</mat-label>
+            <input matInput formControlName="direccion">
+            <mat-error *ngIf="this.formNuevoCliente.get('direccion')?.dirty">{{validaRequiredField()}}</mat-error>
+
+          </mat-form-field>
+
+
+
+            <div class="">
+
+              <button mat-raised-button color="primary" (click)="registro()">Guardar {{titleSingular}}</button>
+
+            </div>
+
+      </form>
+
+
+
+
+
+
+
+
+
+
+
+  </mat-card-content>
+
+</mat-card>
+</div>

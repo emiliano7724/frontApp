@@ -1,0 +1,92 @@
+<mat-card class="example-card-dialog">
+  <mat-card-header>
+
+    <div mat-card-avatar class="example-header-image"></div>
+    <div class="mat-dialog-title-encabezado"><mat-card-title><h1 mat-dialog-title>+Info ID {{titleModal}}: {{data.id_cliente}}</h1></mat-card-title></div>
+
+
+    <mat-card-subtitle></mat-card-subtitle>
+
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+
+</mat-card>
+
+
+
+<mat-dialog-content class="mat-typography">
+
+  <mat-card class="example-card">
+    <mat-card-header>
+
+
+      <mat-card-title></mat-card-title>
+
+
+      <mat-card-subtitle></mat-card-subtitle>
+
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-label>NOMBRE</mat-label>
+          <h1><span class="badge badge-secondary"> {{data.nombre}}</span></h1>
+        </div>
+
+        <div class="col-sm-3">
+          <mat-label>TELEFONO</mat-label>
+          <h2>{{data.telefono}}</h2>
+
+        </div>
+        <div class="col-sm-3">
+          <mat-label>EMAIL</mat-label>
+          <h2>{{data.email}}</h2>
+
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-label>CATEGORIA</mat-label>
+          <h2>{{data.nombre_categoria}}</h2>
+        </div>
+        <div class="col-sm-6">
+          <mat-label>CUIT</mat-label>
+          <h2> {{data.cuit}}</h2>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <mat-label>LOCALIDAD</mat-label>
+          <h2>{{data.nombre_localidad}}</h2>
+        </div>
+        <div class="col-sm-5">
+          <mat-label>DIRECCION</mat-label>
+          <h2> {{data.direccion}}</h2>
+        </div>
+        <div class="col-sm-4">
+          <mat-label>USUARIO CREADOR</mat-label>
+          <h1><span class="badge badge-primary">{{data.name}}</span></h1>
+
+        </div>
+      </div>
+
+
+    </mat-card-content>
+
+  </mat-card>
+
+
+
+
+</mat-dialog-content>
+<div class="footer-dialog">
+  <mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cerrar</button>
+  <!--   <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button> -->
+</mat-dialog-actions>
+</div>

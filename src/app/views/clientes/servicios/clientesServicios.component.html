@@ -1,0 +1,198 @@
+<div class="example-flex-container">
+  <button mat-raised-button color="secondary" (click)="volver()">Volver
+    <mat-icon><span class="material-icons">
+        chevron_left
+      </span></mat-icon>
+  </button>
+</div>
+<br>
+<div class="main-div">
+
+
+  <mat-card class="example-card">
+    <mat-card-header>
+
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title></mat-card-title>
+
+      <p> Servicios </p>
+      <h2>{{titleSingular}}</h2>
+
+      <mat-card-subtitle></mat-card-subtitle>
+
+    </mat-card-header>
+    <mat-card-content>
+
+
+      <form class="example-container" [formGroup]="this.formServicioCliente">
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Incio Lunes</mat-label>
+          <input type="time" matInput formControlName="hiLunes">
+
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Fin Lunes</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+                  </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Incio Martes</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Fin Martes</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Incio Miercoles</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Fin Miercoles</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Incio Jueves</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Fin Jueves</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Incio Viernes</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Fin Viernes</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Incio Sabado</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Fin Sabado</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Incio Domingo</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Hora Fin Domingo</mat-label>
+          <input type="time" matInput formControlName="hfLunes">
+
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="registro()">Guardar</button>
+
+      </form>
+      <!--   <mat-form-field  appearance="fill">
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="telefono">
+            <mat-error *ngIf="this.formNuevoCliente.get('telefono')?.dirty">{{validaRequiredField()}}</mat-error>
+
+
+
+          </mat-form-field>
+
+          <mat-form-field  appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+
+            <mat-error *ngIf="this.formNuevoCliente.get('email')?.dirty">{{validaEmail()}}</mat-error>
+          </mat-form-field>
+
+
+        <br>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Categoria Iva</mat-label>
+
+            <mat-select formControlName="id_categoria_iva">
+              <mat-option value=1>Responsable Inscripto</mat-option>
+              <mat-option value=2>Monotributo</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Cuit</mat-label>
+            <input matInput formControlName="cuit">
+            <mat-error *ngIf="this.formNuevoCliente.get('cuit')?.dirty">{{validaRequiredField()}}</mat-error>
+
+          </mat-form-field>
+
+
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Localidad</mat-label>
+
+
+            <mat-select formControlName="id_localidad">
+              <mat-option value=1>Santa Fe</mat-option>
+              <mat-option value=2>Cordoba</mat-option>
+              <mat-option value=3>Santa Cruz</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field  appearance="fill">
+            <mat-label>Dirección</mat-label>
+            <input matInput formControlName="direccion">
+            <mat-error *ngIf="this.formNuevoCliente.get('direccion')?.dirty">{{validaRequiredField()}}</mat-error>
+
+          </mat-form-field>
+
+
+
+            <div class="">
+
+              <button mat-raised-button color="primary" (click)="registro()">Guardar {{titleSingular}}</button>
+
+            </div>
+
+      </form>
+ -->
+
+
+
+
+
+
+
+
+
+
+    </mat-card-content>
+
+  </mat-card>
+</div>

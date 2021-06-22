@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy, CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
@@ -45,6 +45,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TokenInterceptor } from './services/tokenInterceptor.service';
+
 
 @NgModule({
   imports: [
@@ -65,6 +67,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     IconSetModule.forRoot(),
     HttpClientModule,
     NgbModule,
+    //ClientesModule,
   ],
   declarations: [
     AppComponent,
@@ -72,16 +75,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+
+
+
   ],
   providers: [
+    {provide:HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true},
     {
 
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
     IconSetService,
-   // ClientesService,
+    ClientesService,
   ],
   bootstrap: [ AppComponent ]
 })

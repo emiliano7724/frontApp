@@ -15,11 +15,7 @@ export const routes: Routes = [
     redirectTo: 'dashboard',
     pathMatch: 'full',
   },
-  {
-    path: '',
-    redirectTo: 'clientes',
-    pathMatch: 'full',
-  },
+
   {
     path: '404',
     component: P404Component,
@@ -56,6 +52,16 @@ export const routes: Routes = [
     },
     children: [
       {
+        path: 'clientes',
+        loadChildren: () => import('./views/clientes/clientes.module').then(m => m.ClientesModule)
+      },
+
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+
+    /*   {
         path: 'base',
         loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
       },
@@ -66,14 +72,6 @@ export const routes: Routes = [
       {
         path: 'charts',
         loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)
-      },
-      {
-        path: 'dashboard',
-        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
-      {
-        path: 'clientes',
-        loadChildren: () => import('./views/clientes/clientes.module').then(m => m.ClientesModule)
       },
       {
         path: 'icons',
@@ -90,7 +88,7 @@ export const routes: Routes = [
       {
         path: 'widgets',
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
-      }
+      } */
     ]
   },
   { path: '**', component: P404Component }
