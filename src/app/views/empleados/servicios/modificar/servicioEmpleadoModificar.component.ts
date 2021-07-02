@@ -1,20 +1,25 @@
-import { ICliente } from './../../../interfaces/ICliente';
+import { IServicioFrecuenciaHoraria } from './../../../../interfaces/IServicioFrecuenciaHoraria';
+
+
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { DialogMensajeComponent } from '../../clientes/mensajeDialog/mensajeDialog.component';
-import { ClientesService } from '../clientes.service';
+import { Location } from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
+import { EmpleadosService } from '../../empleados.service';
+import { DialogMensajeComponent } from '../../mensajeDialog/mensajeDialog.component';
 
 @Component({
   selector: 'app-update',
-  templateUrl: 'clientesModificar.component.html',
-  styleUrls: ['clientesModificar.component.css']
+  templateUrl: 'servicioEmpleadoModificar.component.html',
+  styleUrls: ['servicioEmpleadoModificar.component.css']
 
 })
-export class ClientesModificarComponent {
+export class ServicioEmpleadoModificarComponent {
   id: number;
+  semana:number;
+  nombre:string;
   router: Router;
   checked: boolean;
 
@@ -23,69 +28,82 @@ export class ClientesModificarComponent {
   }
 
 
-  public titleSingular = "Cliente"
-  public entidad: ICliente;
+  public titleSingular = "Servicio del Empleado"
+  public entidad: IServicioFrecuenciaHoraria;
 
 
   constructor(public fb: FormBuilder,
     public _router: Router,
-    private _clientesService: ClientesService,
+    private _service: EmpleadosService,
     public dialog: MatDialog,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location:Location
 
   ) {
     this.router = _router;
 
     this.id = this.route.snapshot.params.id;
+    this.semana = this.route.snapshot.params.semana;
+    this.nombre = this.route.snapshot.params.nombre;
 
     const params = {
-      id: this.id
+
+      id: this.id,
+      semana:this.semana,
+
     }
-    this.getEntidadById(params, _clientesService);
+    this.getEntidadById(params, _service);
 
   }
 
 
   formModificaEntidad = this.fb.group({
-    nombre: ["", [Validators.required, Validators.maxLength(150)]],
-    telefono: ["", Validators.required],
-    email: ["", [Validators.required, Validators.email]],
-    id_localidad: ["", [Validators.required]],
-    direccion: ["", [Validators.required]],
-    id_categoria_iva: ["", [Validators.required]],
-    cuit: ["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
-    id_user: [this.getIdUserLogueado()],
-    id_cliente: [""],
-    estado: [""]
+    id_usr: [this.getIdUserLogueado()],
+     hiLunes: [""],
+    hfLunes: [""],
+    hiMartes: [""],
+    hfMartes: [""],
+    hiMiercoles: [""],
+    hfMiercoles: [""],
+    hiJueves: [""],
+    hfJueves: [""],
+    hiViernes: [""],
+    hfViernes: [""],
+    hiSabado: [""],
+    hfSabado: [""],
+    hiDomingo: [""],
+    hfDomingo: [""],
+
   })
 
 
-  getEntidadById(params, service: ClientesService) {
+  getEntidadById(params, service: EmpleadosService) {
 
-    service.getById(params)
+
+    service.getFrecuenciaByIdySemana(params)
       .subscribe((res: any) => {
 
         this.entidad = res.data;
-        if (this.entidad.deleted_at_cli) {
-          this.entidad.estado = false;
-          this.checked=false
-        } else {
-          this.entidad.estado = true;
-          this.checked=true
-        }
-        console.log(this.entidad)
-        this.formModificaEntidad = this.fb.group({
+console.log(this.entidad)
 
-          nombre: [this.entidad.nombre, [Validators.required, Validators.maxLength(150)]],
-          telefono: [this.entidad.telefono, Validators.required],
-          email: [this.entidad.email, [Validators.required, Validators.email]],
-          id_localidad: [String(this.entidad.id_localidad), [Validators.required]],
-          direccion: [this.entidad.direccion, [Validators.required]],
-          id_categoria_iva: [String(this.entidad.id_categoria_iva), [Validators.required]],
-          cuit: [this.entidad.cuit, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
-          id_user: [this.getIdUserLogueado()],
-          id_cliente: [this.entidad.id_cliente],
-          estado: [this.entidad.estado]
+        this.formModificaEntidad = this.fb.group({
+          id_usr: [this.getIdUserLogueado()],
+
+          hiLunes: [this.entidad.hiLunes],
+          hfLunes: [this.entidad.hfLunes],
+          hiMartes: [this.entidad.hiMartes],
+          hfMartes: [this.entidad.hfMartes],
+          hiMiercoles: [this.entidad.hiMiercoles],
+          hfMiercoles: [this.entidad.hfMiercoles],
+          hiJueves: [this.entidad.hiJueves],
+          hfJueves: [this.entidad.hfJueves],
+          hiViernes: [this.entidad.hiViernes],
+          hfViernes: [this.entidad.hfViernes],
+          hiSabado: [this.entidad.hiSabado],
+          hfSabado: [this.entidad.hfSabado],
+          hiDomingo: [this.entidad.hiDomingo],
+          hfDomingo: [this.entidad.hfDomingo],
+
         })
 
       }, (_error: any) => {
@@ -113,6 +131,7 @@ export class ClientesModificarComponent {
       || this.formModificaEntidad.get('telefono').hasError('required')
       || this.formModificaEntidad.get('cuit').hasError('required')
       || this.formModificaEntidad.get('direccion').hasError('required')
+      || this.formModificaEntidad.get('precio_hora').hasError('required')
 
 
     ) {
@@ -124,7 +143,8 @@ export class ClientesModificarComponent {
   registro() {
 
     if (this.formModificaEntidad.valid) {
-      this.updateEntidad(this._clientesService);
+
+      this.updateEntidad(this._service);
 
     } else {
 
@@ -133,10 +153,10 @@ export class ClientesModificarComponent {
   }
 
 
-  updateEntidad(_clientesService: ClientesService) {
+  updateEntidad(_service: EmpleadosService) {
 
     console.log(this.formModificaEntidad.value);
-    _clientesService.update(this.formModificaEntidad.value).subscribe((res: any) => {
+    _service.update(this.formModificaEntidad.value).subscribe((res: any) => {
       //console.log(res)
       /*  if (res.estado == "error") {
          //    console.log(res.data.sqlMessage)
@@ -152,7 +172,7 @@ export class ClientesModificarComponent {
   }
 
   volver() {
-    this.router.navigate(['/clientes']);
+    this.location.back()
   }
 
   openDialog(data) {  // METODO PARA ABRIR EL DIALOG (MODAL)

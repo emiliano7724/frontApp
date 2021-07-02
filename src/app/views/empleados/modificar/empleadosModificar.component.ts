@@ -1,19 +1,20 @@
-import { ICliente } from './../../../interfaces/ICliente';
+import { IEmpleado } from './../../../interfaces/IEmpleado';
+
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { DialogMensajeComponent } from '../../clientes/mensajeDialog/mensajeDialog.component';
-import { ClientesService } from '../clientes.service';
+import { DialogMensajeComponent } from '../mensajeDialog/mensajeDialog.component';
+import { EmpleadosService } from '../empleados.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-update',
-  templateUrl: 'clientesModificar.component.html',
-  styleUrls: ['clientesModificar.component.css']
+  templateUrl: 'empleadosModificar.component.html',
+  styleUrls: ['empleadosModificar.component.css']
 
 })
-export class ClientesModificarComponent {
+export class EmpleadosModificarComponent {
   id: number;
   router: Router;
   checked: boolean;
@@ -23,13 +24,13 @@ export class ClientesModificarComponent {
   }
 
 
-  public titleSingular = "Cliente"
-  public entidad: ICliente;
+  public titleSingular = "Empleado"
+  public entidad: IEmpleado;
 
 
   constructor(public fb: FormBuilder,
     public _router: Router,
-    private _clientesService: ClientesService,
+    private _service: EmpleadosService,
     public dialog: MatDialog,
     private route: ActivatedRoute
 
@@ -41,7 +42,7 @@ export class ClientesModificarComponent {
     const params = {
       id: this.id
     }
-    this.getEntidadById(params, _clientesService);
+    this.getEntidadById(params, _service);
 
   }
 
@@ -52,21 +53,26 @@ export class ClientesModificarComponent {
     email: ["", [Validators.required, Validators.email]],
     id_localidad: ["", [Validators.required]],
     direccion: ["", [Validators.required]],
-    id_categoria_iva: ["", [Validators.required]],
     cuit: ["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
+    dni: ["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
     id_user: [this.getIdUserLogueado()],
-    id_cliente: [""],
-    estado: [""]
+    id_empleado: [""],
+    estado: [""],
+    precio_hora: ["", [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
+    id_tipo_empleado: ["", [Validators.required]],
+    foto: ["", [Validators.required, Validators.maxLength(150)]],
+
+
   })
 
 
-  getEntidadById(params, service: ClientesService) {
+  getEntidadById(params, service: EmpleadosService) {
 
     service.getById(params)
       .subscribe((res: any) => {
 
         this.entidad = res.data;
-        if (this.entidad.deleted_at_cli) {
+        if (this.entidad.deleted_at_emp) {
           this.entidad.estado = false;
           this.checked=false
         } else {
@@ -81,11 +87,15 @@ export class ClientesModificarComponent {
           email: [this.entidad.email, [Validators.required, Validators.email]],
           id_localidad: [String(this.entidad.id_localidad), [Validators.required]],
           direccion: [this.entidad.direccion, [Validators.required]],
-          id_categoria_iva: [String(this.entidad.id_categoria_iva), [Validators.required]],
+          id_tipo_empleado: [String(this.entidad.id_tipo_empleado), [Validators.required]],
           cuit: [this.entidad.cuit, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
+          dni: [this.entidad.dni, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
+          precio_hora: [this.entidad.precio_hora, [Validators.required, Validators.pattern("^[0-9]*$"), Validators.maxLength(20)]],
           id_user: [this.getIdUserLogueado()],
-          id_cliente: [this.entidad.id_cliente],
-          estado: [this.entidad.estado]
+          id_empleado: [this.entidad.id_empleado],
+          estado: [this.entidad.estado],
+          foto: [this.entidad.foto, [Validators.required, Validators.maxLength(150)]],
+
         })
 
       }, (_error: any) => {
@@ -113,6 +123,7 @@ export class ClientesModificarComponent {
       || this.formModificaEntidad.get('telefono').hasError('required')
       || this.formModificaEntidad.get('cuit').hasError('required')
       || this.formModificaEntidad.get('direccion').hasError('required')
+      || this.formModificaEntidad.get('precio_hora').hasError('required')
 
 
     ) {
@@ -124,7 +135,7 @@ export class ClientesModificarComponent {
   registro() {
 
     if (this.formModificaEntidad.valid) {
-      this.updateEntidad(this._clientesService);
+      this.updateEntidad(this._service);
 
     } else {
 
@@ -133,10 +144,10 @@ export class ClientesModificarComponent {
   }
 
 
-  updateEntidad(_clientesService: ClientesService) {
+  updateEntidad(_service: EmpleadosService) {
 
     console.log(this.formModificaEntidad.value);
-    _clientesService.update(this.formModificaEntidad.value).subscribe((res: any) => {
+    _service.update(this.formModificaEntidad.value).subscribe((res: any) => {
       //console.log(res)
       /*  if (res.estado == "error") {
          //    console.log(res.data.sqlMessage)
@@ -152,7 +163,7 @@ export class ClientesModificarComponent {
   }
 
   volver() {
-    this.router.navigate(['/clientes']);
+    this.router.navigate(['/empleados']);
   }
 
   openDialog(data) {  // METODO PARA ABRIR EL DIALOG (MODAL)

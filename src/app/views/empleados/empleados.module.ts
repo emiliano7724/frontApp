@@ -1,13 +1,12 @@
 import { DialogAmpliarInfoComponent } from './index/dialogAmpliarInfo.component';
-import { ClientesNuevoComponent } from './nuevo/clientesNuevo.component';
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { ClientesComponent } from './index/clientes.component';
-import { ClientesRoutingModule } from './clientes-routing.module';
+
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
@@ -20,19 +19,28 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
-import { ClientesServiciosComponent } from './servicios/clientesServicios.component';
+//import { DialogMensajeComponent } from '../mensajeDialog/mensajeDialog.component';
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { ClientesModificarComponent } from './modificar/clientesModificar.component';
+
+import { EmpleadosRoutingModule } from './empleados-routing.module';
+import { EmpleadosComponent } from './index/empleados.component';
+import { EmpleadosNuevoComponent } from './nuevo/empleadosNuevo.component';
+import { EmpleadosModificarComponent } from './modificar/empleadosModificar.component';
+import { MatFileUploadComponent, MatFileUploadModule } from 'angular-material-fileupload';
 import { DialogMensajeComponent } from './mensajeDialog/mensajeDialog.component';
+import { EmpleadosServiciosComponent } from './servicios/index/empleadosServicios.component';
+import { ServicioEmpleadoModificarComponent } from './servicios/modificar/servicioEmpleadoModificar.component';
+
 @NgModule({
   imports: [
 
+    MatFileUploadModule,
     MatCheckboxModule,
     MatTooltipModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
@@ -47,21 +55,23 @@ import { DialogMensajeComponent } from './mensajeDialog/mensajeDialog.component'
     MatIconModule,
     CommonModule,
     FormsModule,
-    ClientesRoutingModule,
+    EmpleadosRoutingModule,
     ChartsModule,
     BsDropdownModule,
     ModalModule.forRoot(),
     ButtonsModule.forRoot()
   ],
   declarations: [
-    ClientesComponent,
-    ClientesNuevoComponent,
+    EmpleadosComponent,
+    EmpleadosNuevoComponent,
     DialogAmpliarInfoComponent,
+    EmpleadosModificarComponent,
     DialogMensajeComponent,
-    ClientesModificarComponent,
-    ClientesServiciosComponent],
+    EmpleadosServiciosComponent,
+    ServicioEmpleadoModificarComponent
+  ],
 /*   exports: [
     ClientesComponent
   ] */
 })
-export class ClientesModule { }
+export class EmpleadosModule { }

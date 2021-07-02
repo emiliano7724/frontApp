@@ -1,33 +1,35 @@
-import { DialogMensajeComponent } from '../../clientes/mensajeDialog/mensajeDialog.component';
+import { DialogMensajeComponent } from '../../empleados/mensajeDialog/mensajeDialog.component';
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ClientesService } from '../clientes.service';
+import { ICliente } from '../../../interfaces/ICliente';
 
 
 @Component({
-  templateUrl: 'clientesNuevo.component.html',
-  styleUrls: ['clientesNuevo.component.css']
+  templateUrl: 'clientesModificar.component.html',
+  styleUrls: ['clientesModificar.component.css']
 
 })
 
-export class ClientesNuevoComponent implements OnInit {
+export class ClientesModificarComponents implements OnInit {
+  cliente: ICliente;
   getIdUserLogueado(): Number {
     return 1;
   }
 
-  public router:Router;
-  public titleSingular = "Cliente";
+  public router;
+  public titleSingular = "Cliente"
   constructor(public fb: FormBuilder, public _router: Router, private _clientesService: ClientesService, public dialog: MatDialog,) {
 
     this.router = _router;
 
   }
 
-  storeEntidad(_clientesService: ClientesService) {
-    _clientesService.store(this.formNuevaEntidad.value).subscribe((res: any) => {
+  updateEntidad(_clientesService: ClientesService) {
+    _clientesService.update(this.formModificaEntidad.value).subscribe((res: any) => {
 
       if (res.estado == "error") {
     //    console.log(res.data.sqlMessage)
@@ -53,8 +55,8 @@ export class ClientesNuevoComponent implements OnInit {
   }
 
 
-  formNuevaEntidad = this.fb.group({
-    nombre: ["tes1", [Validators.required, Validators.maxLength(150)]],
+  formModificaEntidad = this.fb.group({
+    nombre: ["as", [Validators.required, Validators.maxLength(150)]],
     telefono: ["45654521", Validators.required],
     email: ["emiliano@gmail.com", [Validators.required, Validators.email]],
     id_localidad: ["1", [Validators.required]],
@@ -66,27 +68,32 @@ export class ClientesNuevoComponent implements OnInit {
 
   registro() {
 
-    if (this.formNuevaEntidad.valid) {
-      this.storeEntidad(this._clientesService);
+    if (this.formModificaEntidad.valid) {
+      this.updateEntidad(this._clientesService);
 
     } else {
     //this.openDialog("Complete correctamente el formulario")
     }
   }
-s
- validaEmail() {
-    if (this.formNuevaEntidad.get('email').hasError('required')) {
+
+
+
+
+
+
+  validaEmail() {
+    if (this.formModificaEntidad.get('email').hasError('required')) {
       return 'Campo Obligatorio';
     }
 
-    return this.formNuevaEntidad.get('email').hasError('email') ? 'E-Mail Inválido' : '';
+    return this.formModificaEntidad.get('email').hasError('email') ? 'E-Mail Inválido' : '';
   }
   validaRequiredField() {
     if (
-      this.formNuevaEntidad.get('nombre').hasError('required')
-      || this.formNuevaEntidad.get('telefono').hasError('required')
-      || this.formNuevaEntidad.get('cuit').hasError('required')
-      || this.formNuevaEntidad.get('direccion').hasError('required')
+      this.formModificaEntidad.get('nombre').hasError('required')
+      || this.formModificaEntidad.get('telefono').hasError('required')
+      || this.formModificaEntidad.get('cuit').hasError('required')
+      || this.formModificaEntidad.get('direccion').hasError('required')
 
 
     ) {

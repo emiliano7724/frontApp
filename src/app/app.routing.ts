@@ -57,6 +57,10 @@ export const routes: Routes = [
       },
 
       {
+        path: 'empleados',
+        loadChildren: () => import('./views/empleados/empleados.module').then(m => m.EmpleadosModule)
+      },
+      {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },

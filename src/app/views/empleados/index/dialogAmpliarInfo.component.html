@@ -4,7 +4,7 @@
     <div mat-card-avatar class="example-header-image"></div>
     <div class="mat-dialog-title-encabezado">
       <mat-card-title>
-        <h1 mat-dialog-title>+Info ID {{titleModal}}: {{data.id_cliente}}</h1>
+        <h1 mat-dialog-title>+Info ID {{titleModal}}: {{data.id_empleado}}</h1>
       </mat-card-title>
     </div>
 
@@ -53,13 +53,17 @@
       </div>
       <hr>
       <div class="row">
-        <div class="col-sm-6">
-          <mat-label>CATEGORIA</mat-label>
-          <h2>{{data.nombre_categoria}}</h2>
+        <div class="col-sm-4">
+          <mat-label>TIPO EMPLEADO</mat-label>
+          <h2>{{data.tipo}}</h2>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <mat-label>CUIT</mat-label>
           <h2> {{data.cuit}}</h2>
+        </div>
+        <div class="col-sm-4">
+          <mat-label>PRECIO HORA</mat-label>
+          <h2> ${{data.precio_hora}}</h2>
         </div>
       </div>
       <hr>

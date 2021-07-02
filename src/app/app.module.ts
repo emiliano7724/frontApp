@@ -46,6 +46,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TokenInterceptor } from './services/tokenInterceptor.service';
+import { EmpleadosService } from './views/empleados/empleados.service';
+import { DialogMensajeComponent } from './views/empleados/mensajeDialog/mensajeDialog.component';
 
 
 @NgModule({
@@ -79,6 +81,8 @@ import { TokenInterceptor } from './services/tokenInterceptor.service';
 
 
 
+
+
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true},
@@ -89,6 +93,7 @@ import { TokenInterceptor } from './services/tokenInterceptor.service';
     },
     IconSetService,
     ClientesService,
+    EmpleadosService,
   ],
   bootstrap: [ AppComponent ]
 })

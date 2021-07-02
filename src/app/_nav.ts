@@ -15,6 +15,35 @@ export const navItems: INavData[] = [
     url: '/clientes',
     icon: 'icon-book-open'
   },
+  {
+    name: 'Empleados',
+    url: '/empleados',
+    icon: 'icon-people'
+  },
+  {
+    name: 'Servicios',
+    url: '/servicios',
+    icon: 'icon-clock'
+  },
+  {
+    name: 'Gestión Usuarios',
+    url: '/usuarios',
+    icon: 'icon-people'
+  },
+  {
+    name: 'Administración',
+    url: '/admin',
+    icon: 'icon-compass'
+  },
+
+  {
+    name: 'Salir',
+    url: '/logout',
+    icon: 'icon-logout'
+  },
+
+
+
 
  /*  {
     title: true,

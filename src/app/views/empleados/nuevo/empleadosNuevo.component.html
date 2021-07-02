@@ -1,0 +1,147 @@
+<div class="example-flex-container">
+  <button mat-raised-button color="secondary" (click)="volver()">Volver
+    <mat-icon><span class="material-icons">
+        chevron_left
+      </span></mat-icon>
+  </button>
+</div>
+<br>
+<div class="main-div">
+
+
+  <mat-card class="example-card">
+    <mat-card-header>
+
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title></mat-card-title>
+
+      <p> Nuevo </p>
+      <h2>{{titleSingular}}</h2>
+
+      <mat-card-subtitle></mat-card-subtitle>
+
+    </mat-card-header>
+    <mat-card-content>
+
+      <hr>
+
+      <form class="example-container" [formGroup]="this.formNuevaEntidad">
+
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre">
+
+          <mat-error *ngIf="this.formNuevaEntidad.get('nombre')?.dirty">{{validaRequiredField()}}</mat-error>
+
+
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Telefono</mat-label>
+          <input matInput formControlName="telefono">
+          <mat-error *ngIf="this.formNuevaEntidad.get('telefono')?.dirty">{{validaRequiredField()}}</mat-error>
+
+
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+
+          <mat-error *ngIf="this.formNuevaEntidad.get('email')?.dirty">{{validaEmail()}}</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Tipo Empleado</mat-label>
+
+          <mat-select formControlName="id_tipo_empleado">
+            <mat-option value=2>DE SERVICIO</mat-option>
+            <mat-option value=1>DE SUPERVISION</mat-option>
+
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Cuit</mat-label>
+          <input matInput formControlName="cuit">
+          <mat-error *ngIf="this.formNuevaEntidad.get('cuit')?.dirty">{{validaRequiredField()}}</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Dni</mat-label>
+          <input matInput formControlName="dni">
+          <mat-error *ngIf="this.formNuevaEntidad.get('dni')?.dirty">{{validaRequiredField()}}</mat-error>
+
+        </mat-form-field>
+
+
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Localidad</mat-label>
+
+
+          <mat-select formControlName="id_localidad">
+            <mat-option value=1>Santa Fe</mat-option>
+            <mat-option value=2>Cordoba</mat-option>
+            <mat-option value=3>Santa Cruz</mat-option>
+
+          </mat-select>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+          <mat-label>Dirección</mat-label>
+          <input matInput formControlName="direccion">
+          <mat-error *ngIf="this.formNuevaEntidad.get('direccion')?.dirty">{{validaRequiredField()}}</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Precio Hora</mat-label>
+          <input matInput formControlName="precio_hora">
+          <mat-error *ngIf="this.formNuevaEntidad.get('precio_hora')?.dirty">{{validaRequiredField()}}</mat-error>
+
+        </mat-form-field>
+
+        <br>
+        <label for="singleFile">Seleccionar Foto</label>
+        <input id="singleFile" type="file" [fileUploadInputFor]="fileUploadQueue" />
+        <br>
+
+        <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'"
+          [httpUrl]="'http://localhost:3000/archivos/upload'">
+
+          <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index">
+          </mat-file-upload>
+        </mat-file-upload-queue>
+
+
+
+        <button class="btn-block" mat-raised-button color="primary" (click)="registro()">Guardar
+          {{titleSingular}}</button>
+
+
+
+      </form>
+
+
+
+
+
+
+
+
+
+
+
+    </mat-card-content>
+
+  </mat-card>
+</div>

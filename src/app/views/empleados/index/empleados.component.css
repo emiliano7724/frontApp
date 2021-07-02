@@ -19,8 +19,12 @@ td, th {
 }
 
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-image: url('https://material.angular.io/assets/img/examples/shiba2.jpg');
   background-size: cover;
+}
+.img_tabla {
+  width: 40%;
+
 }
 
 

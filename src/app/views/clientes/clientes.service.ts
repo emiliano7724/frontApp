@@ -8,24 +8,34 @@ export class ClientesService {
 
 
 
-  constructor(private http:HttpClient) {}
+  constructor(private http: HttpClient) { }
+
+  rutaApi:string = "http://localhost:3000";
+
+  getAll(): Observable<ICliente[]> {
+    return this.http.get<ICliente[]>(this.rutaApi+"/clientes/index")
+  }
+  getById(params:{}): Observable<ICliente> {
+
+    return this.http.post<ICliente>(this.rutaApi+"/clientes/edit",params)
+  }
+
+  store(dataForm: {}) {
+    return this.http.post<ICliente[]>(this.rutaApi+"/clientes/create", dataForm)
+  }
+  update(dataForm: {}) {
+
+    return this.http.put<ICliente[]>(this.rutaApi+"/clientes/update", dataForm)
+  }
+
+  getServicioDelCliente(): Observable<ICliente[]> {
+    return this.http.get<ICliente[]>(this.rutaApi+"/clientes/index")
+  }
 
 
-getAll(): Observable<ICliente[]>{
-  return this.http.get<ICliente[]>("http://localhost:3000/clientes/index")
-}
-
-
-store(dataForm:{}){
-   return this.http.post<ICliente[]>("http://localhost:3000/clientes/create",dataForm)
-}
-update(dataForm:{}){
-  console.log(dataForm);
-   return this.http.put<ICliente[]>("http://localhost:3000/clientes/update",dataForm)
-}
-storeServicioCliente(dataForm:{}){
-  return this.http.post<ICliente[]>("http://localhost:3000/servicios/create",dataForm)
-}
+  storeServicioCliente(dataForm: {}) {
+    return this.http.post<ICliente[]>("http://localhost:3000/servicios/create", dataForm)
+  }
 
 }
 

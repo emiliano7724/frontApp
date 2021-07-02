@@ -25,7 +25,7 @@
 
     <hr>
 
-      <form class="example-container" [formGroup]="this.formNuevoCliente">
+      <form class="example-container" [formGroup]="this.formNuevaEntidad">
 
 
 
@@ -33,7 +33,7 @@
             <mat-label>Nombre</mat-label>
             <input matInput formControlName="nombre">
 
-            <mat-error *ngIf="this.formNuevoCliente.get('nombre')?.dirty">{{validaRequiredField()}}</mat-error>
+            <mat-error *ngIf="this.formNuevaEntidad.get('nombre')?.dirty">{{validaRequiredField()}}</mat-error>
 
 
           </mat-form-field>
@@ -42,24 +42,18 @@
           <mat-form-field  appearance="fill">
             <mat-label>Telefono</mat-label>
             <input matInput formControlName="telefono">
-            <mat-error *ngIf="this.formNuevoCliente.get('telefono')?.dirty">{{validaRequiredField()}}</mat-error>
+            <mat-error *ngIf="this.formNuevaEntidad.get('telefono')?.dirty">{{validaRequiredField()}}</mat-error>
 
 
 
           </mat-form-field>
 
-          <mat-form-field  appearance="fill">
+          <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input matInput formControlName="email">
 
-            <mat-error *ngIf="this.formNuevoCliente.get('email')?.dirty">{{validaEmail()}}</mat-error>
+            <mat-error *ngIf="this.formNuevaEntidad.get('email')?.dirty">{{validaEmail()}}</mat-error>
           </mat-form-field>
-
-
-
-
-        <br>
-
 
 
           <mat-form-field appearance="fill">
@@ -75,7 +69,7 @@
           <mat-form-field appearance="fill">
             <mat-label>Cuit</mat-label>
             <input matInput formControlName="cuit">
-            <mat-error *ngIf="this.formNuevoCliente.get('cuit')?.dirty">{{validaRequiredField()}}</mat-error>
+            <mat-error *ngIf="this.formNuevaEntidad.get('cuit')?.dirty">{{validaRequiredField()}}</mat-error>
 
           </mat-form-field>
 
@@ -98,17 +92,17 @@
           <mat-form-field  appearance="fill">
             <mat-label>Dirección</mat-label>
             <input matInput formControlName="direccion">
-            <mat-error *ngIf="this.formNuevoCliente.get('direccion')?.dirty">{{validaRequiredField()}}</mat-error>
+            <mat-error *ngIf="this.formNuevaEntidad.get('direccion')?.dirty">{{validaRequiredField()}}</mat-error>
 
           </mat-form-field>
 
 
 
-            <div class="">
 
-              <button mat-raised-button color="primary" (click)="registro()">Guardar {{titleSingular}}</button>
 
-            </div>
+              <button class="btn-block" mat-raised-button color="primary" (click)="registro()">Guardar {{titleSingular}}</button>
+
+
 
       </form>
 

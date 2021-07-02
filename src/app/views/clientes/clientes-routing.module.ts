@@ -22,7 +22,7 @@ const routes: Routes = [
     },
   },
   {
-    path: 'modificar',
+    path: 'modificar/:id',
     component: ClientesModificarComponent,
     data: {
       title: 'Modificar Cliente'
@@ -30,7 +30,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'servicios',
+    path: 'servicios/:id',
     component: ClientesServiciosComponent,
     data: {
       title: 'Servicios Cliente'
