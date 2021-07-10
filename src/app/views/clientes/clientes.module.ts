@@ -21,11 +21,13 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
-import { ClientesServiciosComponent } from './servicios/clientesServicios.component';
+
 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ClientesModificarComponent } from './modificar/clientesModificar.component';
 import { DialogMensajeComponent } from './mensajeDialog/mensajeDialog.component';
+import { ClientesServiciosComponent } from './servicios/index/serviciosclientes.component';
+import { ClientesNuevoServiciosComponent } from './servicios/nuevo/clientesServicios.component';
 @NgModule({
   imports: [
 
@@ -59,7 +61,8 @@ import { DialogMensajeComponent } from './mensajeDialog/mensajeDialog.component'
     DialogAmpliarInfoComponent,
     DialogMensajeComponent,
     ClientesModificarComponent,
-    ClientesServiciosComponent],
+    ClientesServiciosComponent,
+    ClientesNuevoServiciosComponent],
 /*   exports: [
     ClientesComponent
   ] */

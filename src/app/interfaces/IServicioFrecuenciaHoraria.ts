@@ -16,6 +16,6 @@ export interface IServicioFrecuenciaHoraria {
   hfSabado: string
   hiDomingo:string
   hfDomingo: string
-
+  id_usr:number
 
 }

@@ -108,7 +108,7 @@ export class ClientesComponent {
     //  const viewEdit= this.viewEdit.cliente
     this.router.navigate(['/clientes/modificar/'+ this.clienteSeleccionado.id_cliente]);
   }
-  irAFormAsignarServicio(row) {
+  irAFormClientesServicios(row) {
     this.clienteSeleccionado = row;
     this.router.navigate(['/clientes/servicios/' + this.clienteSeleccionado.id_cliente]);
   }

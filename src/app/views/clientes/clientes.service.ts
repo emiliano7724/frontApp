@@ -1,3 +1,4 @@
+import { IServicioFrecuenciaHoraria } from './../../interfaces/IServicioFrecuenciaHoraria';
 import { ICliente } from '../../interfaces/ICliente';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -28,8 +29,8 @@ export class ClientesService {
     return this.http.put<ICliente[]>(this.rutaApi+"/clientes/update", dataForm)
   }
 
-  getServicioDelCliente(): Observable<ICliente[]> {
-    return this.http.get<ICliente[]>(this.rutaApi+"/clientes/index")
+  getAllServiciosClientes(params:{}): Observable<IServicioFrecuenciaHoraria[]> {
+    return this.http.post<IServicioFrecuenciaHoraria[]>(this.rutaApi+"/servicios/getHorariosServiciosCliente", params)
   }
 
 

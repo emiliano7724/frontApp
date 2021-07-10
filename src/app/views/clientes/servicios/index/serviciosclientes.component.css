@@ -1,0 +1,26 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 5%;
+}
+.example-card-dialog {
+  max-width: 650px;
+  background-color: cornflowerblue;
+}
+.mat-dialog-title-encabezado {
+ color:white;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+

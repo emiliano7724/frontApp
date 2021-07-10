@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClientesComponent } from './index/clientes.component';
 import { ClientesModificarComponent } from './modificar/clientesModificar.component';
 import { ClientesNuevoComponent } from './nuevo/clientesNuevo.component';
-import { ClientesServiciosComponent } from './servicios/clientesServicios.component';
+import { ClientesServiciosComponent } from './servicios/index/serviciosclientes.component';
+import { ClientesNuevoServiciosComponent } from './servicios/nuevo/clientesServicios.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,13 @@ const routes: Routes = [
     component: ClientesServiciosComponent,
     data: {
       title: 'Servicios Cliente'
+    },
+  },
+  {
+    path: 'servicios/nuevo/:id',
+    component: ClientesNuevoServiciosComponent,
+    data: {
+      title: 'Nuevo Servicio Cliente'
     },
   },
 

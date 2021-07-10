@@ -30,9 +30,7 @@ export class EmpleadosService {
     return this.http.put<IEmpleado[]>(this.rutaApi+"/empleados/update", dataForm)
   }
 
-  getServicioDelCliente(): Observable<IEmpleado[]> {
-    return this.http.get<IEmpleado[]>(this.rutaApi+"/empleados/index")
-  }
+
   getMesCalendarioEmpleado(params:{}): Observable<ImesCalendario[]> {
 
     return this.http.post<ImesCalendario[]>(this.rutaApi+"/servicios/getMesCalendario",params)
