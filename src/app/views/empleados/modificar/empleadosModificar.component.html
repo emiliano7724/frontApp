@@ -63,9 +63,9 @@
 
           <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="email">
+            <input matInput formControlName="email_empleado">
 
-            <mat-error *ngIf="this.formModificaEntidad.get('email')?.dirty">{{validaEmail()}}</mat-error>
+            <mat-error *ngIf="this.formModificaEntidad.get('email_empleado')?.dirty">{{validaEmail()}}</mat-error>
 
           </mat-form-field>
 
@@ -128,16 +128,16 @@
 
 
           <br>
-          <label for="singleFile">Seleccionar Foto</label>
-          <input id="singleFile" type="file" [fileUploadInputFor]="fileUploadQueue" />
+       <!--    <label for="singleFile">Seleccionar Foto</label>
+          <input id="singleFile" type="file" [fileUploadInputFor]="fileUploadQueue" /> -->
           <br>
 
-          <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'"
+       <!--    <mat-file-upload-queue #fileUploadQueue [fileAlias]="'file'"
             [httpUrl]="'http://localhost:3000/archivos/upload'">
 
             <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index">
             </mat-file-upload>
-          </mat-file-upload-queue>
+          </mat-file-upload-queue> -->
 
           <mat-checkbox *ngIf="checked" formControlName="estado" class="example-margin">Habilitado</mat-checkbox>
           <mat-checkbox *ngIf="!checked" formControlName="estado" class="example-margin">No Habilitado</mat-checkbox>

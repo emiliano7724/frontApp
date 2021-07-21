@@ -7,7 +7,7 @@ export interface IEmpleado {
   telefono: string
   dni: number
   cuit: number
-  email: string
+  email_empleado: string
   foto: string
   precio_hora: number
   id_localidad: number

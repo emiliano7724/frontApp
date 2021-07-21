@@ -3,7 +3,7 @@ import { ClientesNuevoComponent } from './nuevo/clientesNuevo.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ChartsModule } from 'ng2-charts';
+
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ClientesComponent } from './index/clientes.component';
@@ -20,14 +20,11 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
-
-
-
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ClientesModificarComponent } from './modificar/clientesModificar.component';
-import { DialogMensajeComponent } from './mensajeDialog/mensajeDialog.component';
 import { ClientesServiciosComponent } from './servicios/index/serviciosclientes.component';
 import { ClientesNuevoServiciosComponent } from './servicios/nuevo/clientesServicios.component';
+import {NgxPrintModule} from 'ngx-print';
 @NgModule({
   imports: [
 
@@ -48,9 +45,9 @@ import { ClientesNuevoServiciosComponent } from './servicios/nuevo/clientesServi
     MatButtonModule,
     MatIconModule,
     CommonModule,
-    FormsModule,
+    NgxPrintModule,
     ClientesRoutingModule,
-    ChartsModule,
+
     BsDropdownModule,
     ModalModule.forRoot(),
     ButtonsModule.forRoot()
@@ -59,7 +56,6 @@ import { ClientesNuevoServiciosComponent } from './servicios/nuevo/clientesServi
     ClientesComponent,
     ClientesNuevoComponent,
     DialogAmpliarInfoComponent,
-    DialogMensajeComponent,
     ClientesModificarComponent,
     ClientesServiciosComponent,
     ClientesNuevoServiciosComponent],

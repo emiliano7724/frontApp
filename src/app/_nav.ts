@@ -20,26 +20,54 @@ export const navItems: INavData[] = [
     url: '/empleados',
     icon: 'icon-people'
   },
-  {
+   {
     name: 'Servicios',
     url: '/servicios',
     icon: 'icon-clock'
   },
-  {
+ /*  {
     name: 'Gestión Usuarios',
     url: '/usuarios',
     icon: 'icon-people'
-  },
+  }, */
+
   {
     name: 'Administración',
     url: '/admin',
-    icon: 'icon-compass'
-  },
+    icon: 'icon-compass',class:'userRoot',
+    children: [
 
-  {
-    name: 'Salir',
-    url: '/logout',
-    icon: 'icon-logout'
+      {
+        name: 'Gestión Usuarios',
+        url: 'admin/usuarios',
+        icon: 'icon-people'
+      },
+      {
+        name: 'Mi Empresa',
+        url: '/admin/miempresa',
+        icon: 'icon-home',
+        badge: {
+          variant: 'success',
+          text: '@'
+        }
+      },
+      {
+        name: 'Localidades',
+        url: '/admin/localidades',
+        icon: 'icon-map'
+      },
+      {
+        name: 'Categoria Iva',
+        url: '/admin/categoriasIva',
+        icon: 'icon-list',
+
+      },
+      {
+        name: 'Tipos de Empleados',
+        url: '/admin/tiposEmpleados',
+        icon: 'icon-star'
+      }
+    ]
   },
 
 

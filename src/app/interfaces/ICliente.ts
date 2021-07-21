@@ -5,7 +5,7 @@ export interface ICliente {
   nombre:string
   cuit:number
   telefono:string
-  email:string
+  email_cliente:string
   id_localidad:number
   id_categoria_iva:number
   direccion:string

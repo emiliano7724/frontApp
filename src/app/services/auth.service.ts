@@ -1,5 +1,8 @@
+import { IUser } from './../interfaces/IUser';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -7,7 +10,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  rutaApi:string = environment.urlApi;
 
   authState = new BehaviorSubject(false);
 
@@ -19,9 +24,17 @@ export class AuthService {
     return this.authState.value
   }
 
-  logoaut(){
+  logout(){
     localStorage.removeItem("token");
     this.authState.next(false);
+  }
+  getUser(): Observable<IUser>{
+
+    return this.http.get<IUser>(this.rutaApi+"/users/getUser");
+  }
+  getImgUser(user:{}) {
+
+    return this.http.post(this.rutaApi+"/archivos/getImg",user);
   }
 
 

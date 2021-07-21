@@ -1,0 +1,82 @@
+
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <div class="example-button-container">
+
+      <button (click)="irAFormNuevo()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+        <mat-icon>add</mat-icon>
+
+      </button>
+    </div>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{titleTable}}</mat-card-title>
+    <mat-card-subtitle>Listado</mat-card-subtitle>
+  </mat-card-header>
+ <mat-card-content>
+
+  <mat-form-field>
+    <mat-label>Buscar</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort >
+
+
+      <ng-container  matColumnDef="ID_USER">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell  [hidden] *matCellDef="let row"> {{row.id_user}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="NOMBRE">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="EMAIL">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> EMAIL </th>
+        <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="TELEFONO">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> TELEFONO </th>
+        <td mat-cell *matCellDef="let row"> {{row.telefono}} </td>
+      </ng-container>
+      <ng-container matColumnDef="EMPRESA">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> EMPRESA </th>
+        <td mat-cell *matCellDef="let row"> {{row.razon_social}} </td>
+      </ng-container>
+      <ng-container matColumnDef="ROL">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ROL </th>
+        <td mat-cell *matCellDef="let row"> {{row.nombre_rol}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ACCIONES">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCIONES </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-raised-button  matTooltip="Modificar" color="warn" (click)="irAFormModificar(row)"><span class="material-icons">edit</span></button>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No se encontraron resultados "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+
+
+  </mat-card-content>
+
+</mat-card>
+

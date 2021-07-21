@@ -1,3 +1,4 @@
+import { IHorarioCliente } from './../../../../interfaces/IHorarioCliente';
 import { IServicioFrecuenciaHoraria } from './../../../../interfaces/IServicioFrecuenciaHoraria';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -23,12 +24,12 @@ export class ClientesServiciosComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['ID', 'HILUNES', 'HFLUNES', 'HIMARTES', 'HFMARTES', 'HIMIERCOLES', 'HFMIERCOLES', 'HIJUEVES', 'HFJUEVES', 'HIVIERNES', 'HFVIERNES', 'HISABADO', 'HFSABADO','HIDOMINGO', 'HFDOMINGO', 'ACCIONES'];
-  dataSource: MatTableDataSource<IServicioFrecuenciaHoraria>;
+  displayedColumns: string[] = ['ID', 'LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO', 'ACCIONES'];
+  dataSource: MatTableDataSource<IHorarioCliente>;
 
   id:number;
   public titleTable = "Servicios Horario Clientes";
-  public entidadSeleccionado: IServicioFrecuenciaHoraria;
+  public entidadSeleccionado: IHorarioCliente;
   public elementosTabla = [];
   public router;
 

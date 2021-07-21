@@ -35,7 +35,7 @@ export class ClientesService {
 
 
   storeServicioCliente(dataForm: {}) {
-    return this.http.post<ICliente[]>("http://localhost:3000/servicios/create", dataForm)
+    return this.http.post<ICliente[]>("http://localhost:3000/servicios/createHorarioCliente", dataForm)
   }
 
 }

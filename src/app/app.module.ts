@@ -1,3 +1,9 @@
+import { ServiciosService } from './views/servicios/servicios.service';
+import { UsuariosModule } from './views/admin/usuarios/usuarios.module';
+import { UsuariosService } from './views/admin/usuarios/usuarios.service';
+import { AuthGuard } from './guards/auth.guards';
+import { MiCuentaService } from './views/micuenta/micuenta.service';
+import { MiCuentaModule } from './views/micuenta/micuenta.module';
 import { ClientesService } from './views/clientes/clientes.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -22,7 +28,6 @@ import { DefaultLayoutComponent } from './containers';
 
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
-import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
 const APP_CONTAINERS = [
@@ -43,12 +48,14 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TokenInterceptor } from './services/tokenInterceptor.service';
 import { EmpleadosService } from './views/empleados/empleados.service';
-import { DialogMensajeComponent } from './views/empleados/mensajeDialog/mensajeDialog.component';
 
+import { LoginService } from './views/login/login.service';
+import { LoginModule } from './views/login/login.module';
+import { DashboardService } from './views/dashboard/dashboard.service';
+import {NgxPrintModule} from 'ngx-print';
 
 @NgModule({
   imports: [
@@ -64,19 +71,24 @@ import { DialogMensajeComponent } from './views/empleados/mensajeDialog/mensajeD
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule,
+
     IconModule,
     IconSetModule.forRoot(),
     HttpClientModule,
     NgbModule,
-    //ClientesModule,
+    LoginModule,
+    NgxPrintModule
+
+
+
+
   ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
     P404Component,
     P500Component,
-    LoginComponent,
+
     RegisterComponent,
 
 
@@ -86,14 +98,21 @@ import { DialogMensajeComponent } from './views/empleados/mensajeDialog/mensajeD
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi:true},
+
     {
 
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
+    AuthGuard,
     IconSetService,
     ClientesService,
     EmpleadosService,
+    LoginService,
+    DashboardService,
+    MiCuentaService,
+    UsuariosService,
+    ServiciosService
   ],
   bootstrap: [ AppComponent ]
 })

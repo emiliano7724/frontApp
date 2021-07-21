@@ -1,12 +1,11 @@
-import { DialogAmpliarInfoComponent } from './index/dialogAmpliarInfo.component';
 
+import { DialogAmpliarInfoComponent } from './index/dialogAmpliarInfo.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ChartsModule } from 'ng2-charts';
+
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
@@ -19,19 +18,16 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import {MatTooltipModule} from '@angular/material/tooltip';
-//import { DialogMensajeComponent } from '../mensajeDialog/mensajeDialog.component';
-
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
 import { EmpleadosRoutingModule } from './empleados-routing.module';
 import { EmpleadosComponent } from './index/empleados.component';
 import { EmpleadosNuevoComponent } from './nuevo/empleadosNuevo.component';
 import { EmpleadosModificarComponent } from './modificar/empleadosModificar.component';
 import { MatFileUploadComponent, MatFileUploadModule } from 'angular-material-fileupload';
-import { DialogMensajeComponent } from './mensajeDialog/mensajeDialog.component';
 import { EmpleadosServiciosComponent } from './servicios/index/empleadosServicios.component';
 import { ServicioEmpleadoModificarComponent } from './servicios/modificar/servicioEmpleadoModificar.component';
-
+import { EmpleadoServiciosAsignablesComponent } from './servicios/index_asignables/empleadosServiciosAsignables.component';
+import {NgxPrintModule} from 'ngx-print';
 @NgModule({
   imports: [
 
@@ -56,7 +52,7 @@ import { ServicioEmpleadoModificarComponent } from './servicios/modificar/servic
     CommonModule,
     FormsModule,
     EmpleadosRoutingModule,
-    ChartsModule,
+    NgxPrintModule,
     BsDropdownModule,
     ModalModule.forRoot(),
     ButtonsModule.forRoot()
@@ -66,9 +62,9 @@ import { ServicioEmpleadoModificarComponent } from './servicios/modificar/servic
     EmpleadosNuevoComponent,
     DialogAmpliarInfoComponent,
     EmpleadosModificarComponent,
-    DialogMensajeComponent,
     EmpleadosServiciosComponent,
-    ServicioEmpleadoModificarComponent
+    ServicioEmpleadoModificarComponent,
+    EmpleadoServiciosAsignablesComponent,
   ],
 /*   exports: [
     ClientesComponent

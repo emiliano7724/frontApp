@@ -20,7 +20,7 @@ export class EmpleadosComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  displayedColumns: string[] = ['ID_EMPLEADO', 'NOMBRE', 'DIRECCION', 'TELEFONO', 'FOTO','ACCIONES'];
+  displayedColumns: string[] = ['ID_EMPLEADO', 'NOMBRE', 'DIRECCION', 'TELEFONO','ACCIONES'];
   dataSource: MatTableDataSource<IEmpleado>;
 
 

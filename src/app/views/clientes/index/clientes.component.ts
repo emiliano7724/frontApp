@@ -67,6 +67,7 @@ export class ClientesComponent {
   }
   openDialog(row) {  // METODO PARA ABRIR EL DIALOG (MODAL)
     this.clienteSeleccionado = row;
+   console.log(this.clienteSeleccionado)
     const dialogRef = this.dialog.open(DialogAmpliarInfoComponent, {
       width: '650px',
       height: '500px',

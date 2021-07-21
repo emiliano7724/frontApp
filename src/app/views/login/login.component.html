@@ -1,44 +1,59 @@
+<br>
+<br>
+<br>
+<br>
 <div class="app-body">
   <main class="main d-flex align-items-center">
     <div class="container">
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="card-group">
-            <div class="card p-4">
+            <div class="card p-1">
               <div class="card-body">
-                <form>
-                  <h1>Login</h1>
+                <form [formGroup]="this.formLogin">
+                  <h1>Login AppServicios</h1>
                   <p class="text-muted">Ingrese sus credenciales</p>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Usuario" autocomplete="username" required>
+                    <input   matInput formControlName="name" type="text" class="form-control" placeholder="Usuario" autocomplete="username" required>
+
                   </div>
+                  <mat-error *ngIf="this.formLogin.get('name')?.dirty">{{validaRequiredUserField()}}</mat-error>
+
                   <div class="input-group mb-4">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" placeholder="Password" autocomplete="current-password" required>
+                    <input   matInput formControlName="password" type="password" class="form-control" placeholder="Password" autocomplete="current-password" required>
+
+
                   </div>
+                  <mat-error *ngIf="this.formLogin.get('password')?.dirty">{{validaRequiredPasswordField()}}</mat-error>
+
                   <div class="row">
-                    <div class="col-6">
-                      <button type="button" class="btn btn-primary px-4">Ingresar</button>
+                    <div class="col-12">
+                      <button (click)="doLogin()"  type="button" class="btn btn-secondary  btn-block">Ingresar</button>
                     </div>
                     <!-- <div class="col-6 text-right">
                       <button type="button" class="btn btn-link px-0">Forgot password?</button>
                     </div> -->
                   </div>
+                  <mat-error *ngIf="this.formInvalido">{{muestraMensaje()}}</mat-error>
+
                 </form>
               </div>
             </div>
-            <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+            <div class="card text-white py-5 d-md-down-none" style="width:44%; background-color: #527571;">
               <div class="card-body text-center">
-               <!--  <div>
-                  <h2>Sign up</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <button type="button" class="btn btn-primary active mt-3">Register Now!</button>
-                </div> -->
+
+
+              <img style="width:44%; "src="assets/img/brand/logo.png" alt="">
+          <div>
+                  <h3>Ingreso al sistema</h3>
+                  <p>Optimice recursos, controle carga horaria de empleados y mucho mas...</p>
+                </div>
               </div>
             </div>
           </div>

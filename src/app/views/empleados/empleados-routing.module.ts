@@ -4,6 +4,7 @@ import { EmpleadosComponent } from './index/empleados.component';
 import { EmpleadosModificarComponent } from './modificar/empleadosModificar.component';
 import { EmpleadosNuevoComponent } from './nuevo/empleadosNuevo.component';
 import { EmpleadosServiciosComponent } from './servicios/index/empleadosServicios.component';
+import { EmpleadoServiciosAsignablesComponent } from './servicios/index_asignables/empleadosServiciosAsignables.component';
 import { ServicioEmpleadoModificarComponent } from './servicios/modificar/servicioEmpleadoModificar.component';
 
 
@@ -28,6 +29,14 @@ const routes: Routes = [
     component: EmpleadosModificarComponent,
     data: {
       title: 'Modificar Empleado'
+    },
+
+  },
+  {
+    path: 'servicios/asignables/:id/:nombre',
+    component: EmpleadoServiciosAsignablesComponent,
+    data: {
+      title: 'Ver Servicios Asignables - Empleado'
     },
 
   },

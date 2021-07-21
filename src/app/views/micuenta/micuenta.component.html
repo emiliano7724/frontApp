@@ -1,0 +1,128 @@
+<div class="animated fadeIn">
+  <div class="row">
+
+    <div class="col-sm-6 col-lg-16">
+      <div class="card">
+        <div class="card-body pb-10">
+          <div class="btn-group float-right" dropdown>
+
+            <button (click)="updateDataDialog()" type="button" class="btn btn-youtube" >
+            MODIFICAR MIS DATOS <i class="icon-book-open"></i>
+            </button>
+
+          </div>
+          <div class="text-dark">DATOS USUARIO
+            <i class="icon-user"></i>
+
+          </div>
+
+          <br>
+
+        <div class="card">
+          <div class="card-body">
+            <form class="example-container" [formGroup]="this.formModificaEntidad">
+
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre USUARIO</mat-label>
+                <input matInput formControlName="name">
+
+                <mat-error *ngIf="this.formModificaEntidad.get('name')?.dirty">{{validaRequiredField()}}</mat-error>
+
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Telefono</mat-label>
+                <input matInput formControlName="telefono">
+                <mat-error *ngIf="this.formModificaEntidad.get('telefono')?.dirty">{{validaRequiredField()}}</mat-error>
+
+             </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+
+                <mat-error *ngIf="this.formModificaEntidad.get('email')?.dirty">{{validaEmail()}}</mat-error>
+
+              </mat-form-field>
+
+
+
+
+                <mat-form-field appearance="fill">
+                  <mat-label>EMPRESA</mat-label>
+                  <input readonly matInput formControlName="razon_social">
+
+                  <mat-error *ngIf="this.formModificaEntidad.get('razon_social')?.dirty">{{validaRequiredField()}}</mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                  <mat-label>ROL USUARIO</mat-label>
+                  <input readonly matInput formControlName="nombre_rol">
+
+                  <mat-error *ngIf="this.formModificaEntidad.get('nombre_rol')?.dirty">{{validaRequiredField()}}</mat-error>
+
+                </mat-form-field>
+
+            </form>
+            <button class="btn btn-block btn-secondary" type="button" (click)="fileInput.click()">Seleccione una imagen de usuario</button>
+            <input hidden #fileInput type="file" id="file" (change)="onFileChange($event)">
+            <p>{{this.fileName}}</p>
+          </div>
+        </div>
+
+
+        </div>
+
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-16">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <h4 class="card-title mb-0">CAMBIO DE MI CONTRASEÑA</h4>
+            <div class="small text-muted">No olvide utilizar una contraseña segura</div>
+
+
+            <form class="example-container" [formGroup]="this.formModificaPassword">
+
+              <mat-form-field appearance="outline">
+                <mat-label>Contraseña actual</mat-label>
+                <input type="password" matInput formControlName="passwordActual">
+
+                <mat-error *ngIf="this.formModificaPassword.get('passwordActual')?.dirty">{{validaRequiredField()}}</mat-error>
+
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Nueva Contraseña</mat-label>
+                <input type="password" matInput formControlName="passwordNuevo">
+
+                <mat-error *ngIf="this.formModificaPassword.get('passwordNuevo')?.dirty">{{validaRequiredField()}}</mat-error>
+
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Repita la Nueva Contraseña</mat-label>
+                <input type="password" matInput formControlName="passwordNuevoRepetido">
+
+           <mat-error *ngIf="this.formModificaPassword.get('passwordNuevoRepetido')?.dirty">{{validaRequiredField()}}</mat-error>
+
+              </mat-form-field>
+
+            </form>
+
+          </div><!--/.col-->
+          <button (click)="updatePasswordDialog()" type="button" class="btn btn-primary btn-block" >
+            MODIFICAR CONTRASEÑA
+            </button>
+
+
+
+        </div>
+      </div>
+
+    </div>
+
+  </div><!--/.row-->
+</div>
+</div>

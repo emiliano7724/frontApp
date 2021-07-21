@@ -20,105 +20,74 @@
     <mat-card-subtitle>Listado</mat-card-subtitle>
   </mat-card-header>
  <mat-card-content>
-
-  <mat-form-field>
-    <mat-label>Buscar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
-  </mat-form-field>
-
-  <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort >
+  <table mat-table [dataSource]="dataSource" matSort>
 
 
-      <ng-container matColumnDef="ID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.id_horario_cliente}} </td>
-      </ng-container>
+    <ng-container matColumnDef="ID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id_horario_cliente}} </td>
+    </ng-container>
 
 
-      <ng-container matColumnDef="HILUNES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> LUNES I </th>
-        <td mat-cell *matCellDef="let row"> {{row.hiLunes}} </td>
-      </ng-container>
-      <ng-container matColumnDef="HFLUNES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> LUNES E </th>
-        <td mat-cell *matCellDef="let row"> {{row.hfLunes}} </td>
-      </ng-container>
+
+    <ng-container matColumnDef="LUNES">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> LUNES </th>
+      <td matTooltip="Cantidad de Horas: {{row.lunes_carga}}" mat-cell *matCellDef="let row"> {{row.LUNES}} </td>
+    </ng-container>
 
 
-      <ng-container matColumnDef="HIMARTES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> MARTES I </th>
-        <td mat-cell *matCellDef="let row"> {{row.hiMartes}} </td>
-      </ng-container>
-      <ng-container matColumnDef="HFMARTES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> MARTES E </th>
-        <td mat-cell *matCellDef="let row"> {{row.hfMartes}} </td>
-      </ng-container>
+    <ng-container matColumnDef="MARTES">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> MARTES </th>
+      <td matTooltip="Cantidad de Horas: {{row.martes_carga}}" mat-cell *matCellDef="let row"> {{row.MARTES}} </td>
+    </ng-container>
 
-      <ng-container matColumnDef="HIMIERCOLES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> MIERCOLES I </th>
-        <td mat-cell *matCellDef="let row"> {{row.hiMiercoles}} </td>
-      </ng-container>
-      <ng-container matColumnDef="HFMIERCOLES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> MIERCOLES E </th>
-        <td mat-cell *matCellDef="let row"> {{row.hfMiercoles}} </td>
-      </ng-container>
+    <ng-container matColumnDef="MIERCOLES">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> MIERCOLES </th>
+      <td matTooltip="Cantidad de Horas: {{row.miercoles_carga}}" mat-cell *matCellDef="let row"> {{row.MIERCOLES}}
+      </td>
+    </ng-container>
 
-      <ng-container matColumnDef="HIJUEVES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> JUEVES I </th>
-        <td mat-cell *matCellDef="let row"> {{row.hiJueves}} </td>
-      </ng-container>
-      <ng-container matColumnDef="HFJUEVES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> JUEVES E </th>
-        <td mat-cell *matCellDef="let row"> {{row.hfJueves}} </td>
-      </ng-container>
+    <ng-container matColumnDef="JUEVES">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> JUEVES </th>
+      <td matTooltip="Cantidad de Horas: {{row.jueves_carga}}" mat-cell *matCellDef="let row"> {{row.JUEVES}} </td>
+    </ng-container>
 
-      <ng-container matColumnDef="HIVIERNES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> VIERNES I </th>
-        <td mat-cell *matCellDef="let row"> {{row.hiViernes}} </td>
-      </ng-container>
-      <ng-container matColumnDef="HFVIERNES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> VIERNES E </th>
-        <td mat-cell *matCellDef="let row"> {{row.hfViernes}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="HISABADO">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> SABADO I </th>
-        <td mat-cell *matCellDef="let row"> {{row.hiSabado}} </td>
-      </ng-container>
-      <ng-container matColumnDef="HFSABADO">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> SABADO E </th>
-        <td mat-cell *matCellDef="let row"> {{row.hfSabado}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="HIDOMINGO">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOMINGO I  </th>
-        <td mat-cell *matCellDef="let row"> {{row.hiDomingo}} </td>
-      </ng-container>
-      <ng-container matColumnDef="HFDOMINGO">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> DOMINGO E </th>
-        <td mat-cell *matCellDef="let row"> {{row.hfDomingo}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="ACCIONES">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCIONES </th>
-        <td mat-cell *matCellDef="let row">
-          <button mat-raised-button  matTooltip="Modificar" color="warn" (click)="irAFormModificar(row)"><span class="material-icons">edit</span></button>
-        </td>
-      </ng-container>
+    <ng-container matColumnDef="VIERNES">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> VIERNES </th>
+      <td matTooltip="Cantidad de Horas: {{row.viernes_carga}}" mat-cell *matCellDef="let row"> {{row.VIERNES}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="SABADO">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> SABADO </th>
+      <td matTooltip="Cantidad de Horas: {{row.sabado_carga}}" mat-cell *matCellDef="let row"> {{row.SABADO}} </td>
+    </ng-container>
 
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <ng-container matColumnDef="DOMINGO">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DOMINGO </th>
+      <td matTooltip="Cantidad de Horas: {{row.domingo_carga}}" mat-cell *matCellDef="let row"> {{row.DOMINGO}}
+      </td>
+    </ng-container>
 
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No se encontraron resultados "{{input.value}}"</td>
-      </tr>
-    </table>
+    <ng-container matColumnDef="ACCIONES">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCIONES </th>
+      <td mat-cell *matCellDef="let row">
+        <!--     <button mat-raised-button matTooltip="Ampliar Información" color="primary" (click)="openDialog(row)"><span
+            class="material-icons">add_circle</span></button> -->
+        <button mat-raised-button matTooltip="Modificar" color="warn" (click)="irAFormModificarServicio(row)"><span
+            class="material-icons">edit</span></button>
+        <!--  <button mat-raised-button matTooltip="Ver mes calendario" color="secondary"
+          (click)="irAMesCalendarioServicios(row)"><span class="material-icons">edit_calendar</span></button> -->
+      </td>
+    </ng-container>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-  </div>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+
+  </table>
 
 
   </mat-card-content>

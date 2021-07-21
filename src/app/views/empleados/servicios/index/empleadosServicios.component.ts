@@ -9,7 +9,9 @@ import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { ImesCalendario } from '../../../../interfaces/ImesCalendario';
 import { EmpleadosService } from '../../empleados.service';
-import { DialogMensajeComponent } from '../../mensajeDialog/mensajeDialog.component';
+
+
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -55,39 +57,42 @@ export class EmpleadosServiciosComponent implements OnInit {
   cargarTabla(params, service: EmpleadosService) {
     service.getMesCalendarioEmpleado(params)
       .subscribe((res: any) => {
+       if (res.data) {
         this.totalCargaHoraria = res.data.totalCargaHorario;
 
         this.serviciosS1 = res.data.mes.s1
         this.serviciosS2 = res.data.mes.s2
         this.serviciosS3 = res.data.mes.s3
         this.serviciosS4 = res.data.mes.s4
+        this.dataSourceS1 = new MatTableDataSource(this.serviciosS1);
+        this.dataSourceS2 = new MatTableDataSource(this.serviciosS2);
+        this.dataSourceS3 = new MatTableDataSource(this.serviciosS3);
+        this.dataSourceS4 = new MatTableDataSource(this.serviciosS4);
+       }else{
+
+        Swal.fire("El empleado aun no posee servicios");
+       }
+
         // console.log(this.totalCargaHoraria)
 
       }, (error: any) => {
         console.log(" on error");
       }, () => {
 
-        this.dataSourceS1 = new MatTableDataSource(this.serviciosS1);
-        this.dataSourceS2 = new MatTableDataSource(this.serviciosS2);
-        this.dataSourceS3 = new MatTableDataSource(this.serviciosS3);
-        this.dataSourceS4 = new MatTableDataSource(this.serviciosS4);
+
       })
   }
 
-  openDialog(data) {  // METODO PARA ABRIR EL DIALOG (MODAL)
-    //console.log(data)
-    const dialogRef = this.dialog.open(DialogMensajeComponent, {
-      width: '500px',
-      height: '350px',
-      data: data
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
 
   ngOnInit(): void {
+  }
+
+  irAServiciosAsignables () {
+
+
+
+
+    this.router.navigate(['empleados/servicios/asignables/' + this.id+"/"+this.nombre]);
   }
 
   irAFormModificarServicio(row, semana) {

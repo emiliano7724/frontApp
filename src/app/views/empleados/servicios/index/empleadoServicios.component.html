@@ -6,26 +6,26 @@
   </button>
 </div>
 <br>
-<!-- <div class="row">
+<div class="row">
   <div class="col-4">
     <h1><span class="badge badge-primary">Total Carga Horaria: {{totalCargaHoraria}}Hs</span></h1>
 
   </div>
-  <div class="col-2">
+ <!--  <div class="col-2">
     <h1><span class="badge badge-warning">Total a pagar: ${{totalCargaHoraria}}Hs</span></h1>
 
 
-  </div>
+  </div> -->
 
 
 </div>
- -->
+
 
 <mat-card class="example-card">
   <mat-card-header>
     <div class="example-button-container">
 
-      <button (click)="irAFormNuevo()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
+      <button  matTooltip="Ver servicios asignables" (click)="irAServiciosAsignables()" mat-fab color="primary" aria-label="Example icon button with a delete icon">
         <mat-icon>add</mat-icon>
 
       </button>
@@ -100,7 +100,7 @@
           <td mat-cell *matCellDef="let row">
             <!--     <button mat-raised-button matTooltip="Ampliar Información" color="primary" (click)="openDialog(row)"><span
                 class="material-icons">add_circle</span></button> -->
-            <button mat-raised-button matTooltip="Modificar" color="warn" (click)="irAFormModificarServicio(row,semanas[0])"><span
+            <button mat-raised-button matTooltip="MODIFICAR SEMANA SEMANA" color="warn" (click)="irAFormModificarServicio(row,semanas[0])"><span
                 class="material-icons">edit</span></button>
             <!--  <button mat-raised-button matTooltip="Ver mes calendario" color="secondary"
               (click)="irAMesCalendarioServicios(row)"><span class="material-icons">edit_calendar</span></button> -->
@@ -182,7 +182,7 @@
           <td mat-cell *matCellDef="let row">
             <!--     <button mat-raised-button matTooltip="Ampliar Información" color="primary" (click)="openDialog(row)"><span
                 class="material-icons">add_circle</span></button> -->
-                <button mat-raised-button matTooltip="Modificar" color="warn" (click)="irAFormModificarServicio(row,semanas[1])"><span
+                <button mat-raised-button matTooltip="MODIFICAR SEMANA" color="warn" (click)="irAFormModificarServicio(row,semanas[1])"><span
                   class="material-icons">edit</span></button>
             <!--  <button mat-raised-button matTooltip="Ver mes calendario" color="secondary"
               (click)="irAMesCalendarioServicios(row)"><span class="material-icons">edit_calendar</span></button> -->
@@ -264,7 +264,7 @@
           <td mat-cell *matCellDef="let row">
             <!--     <button mat-raised-button matTooltip="Ampliar Información" color="primary" (click)="openDialog(row)"><span
                 class="material-icons">add_circle</span></button> -->
-                <button mat-raised-button matTooltip="Modificar" color="warn" (click)="irAFormModificarServicio(row,semanas[2])"><span
+                <button mat-raised-button matTooltip="MODIFICAR SEMANA" color="warn" (click)="irAFormModificarServicio(row,semanas[2])"><span
                   class="material-icons">edit</span></button>
             <!--  <button mat-raised-button matTooltip="Ver mes calendario" color="secondary"
               (click)="irAMesCalendarioServicios(row)"><span class="material-icons">edit_calendar</span></button> -->
@@ -346,7 +346,7 @@
           <td mat-cell *matCellDef="let row">
             <!--     <button mat-raised-button matTooltip="Ampliar Información" color="primary" (click)="openDialog(row)"><span
                 class="material-icons">add_circle</span></button> -->
-                <button mat-raised-button matTooltip="Modificar" color="warn" (click)="irAFormModificarServicio(row,semanas[3])"><span
+                <button mat-raised-button matTooltip="MODIFICAR SEMANA" color="warn" (click)="irAFormModificarServicio(row,semanas[3])"><span
                   class="material-icons">edit</span></button>
             <!--  <button mat-raised-button matTooltip="Ver mes calendario" color="secondary"
               (click)="irAMesCalendarioServicios(row)"><span class="material-icons">edit_calendar</span></button> -->

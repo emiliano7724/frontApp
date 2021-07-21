@@ -10,7 +10,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ICliente } from '../../../../interfaces/ICliente';
 import { ClientesService } from '../../clientes.service';
-import { DialogMensajeComponent } from '../../mensajeDialog/mensajeDialog.component';
+import { AuthService } from '../../../../services/auth.service';
+import { IUser } from '../../../../interfaces/IUser';
+import Swal from 'sweetalert2';
+
 
 @Component({
   templateUrl: 'clientesServicios.component.html',
@@ -19,7 +22,8 @@ import { DialogMensajeComponent } from '../../mensajeDialog/mensajeDialog.compon
 })
 
 export class ClientesNuevoServiciosComponent  {
-  id: number;
+  public user:IUser;
+  id: number=null;
   displayedColumns: string[] = ['ID_CLIENTE', 'NOMBRE','DIRECCION', 'TELEFONO', 'ACCIONES'];
   dataSource: MatTableDataSource<ICliente>;
 
@@ -29,106 +33,118 @@ export class ClientesNuevoServiciosComponent  {
   cliente: ICliente;
 
   formServicioCliente = this.fb.group({
-    id_usr: [this.getIdUserLogueado()],
-    id_cliente: [""],
-    hiLunes: [""],
-    hfLunes: [""],
-    hiMartes: [""],
-    hfMartes: [""],
+
+
+    hiLunes: [],
+    hfLunes: [],
+    hiMartes: [],
+    hfMartes: [],
     hiMiercoles: ["08:00"],
-    hfMiercoles: ["14:00"],
-    hiJueves: [""],
-    hfJueves: [""],
+    hfMiercoles: ["19:00"],
+    hiJueves: [],
+    hfJueves: [],
     hiViernes: ["08:00"],
-    hfViernes: ["14:00"],
-    hiSabado: [""],
-    hfSabado: [""],
-    hiDomingo: [""],
-    hfDomingo: [""],
+    hfViernes: ["19:00"],
+    hiSabado: [],
+    hfSabado: [],
+    hiDomingo: [],
+    hfDomingo: [],
 
   })
 
-  getIdUserLogueado(): Number {
-    return 1;
-  }
+
 
   public router;
-  public titleSingular = "Cliente";
+  public titleSingular = " Servicio Cliente";
   public servicios = [];
 
 
-  constructor(public fb: FormBuilder,
+  constructor(public authService: AuthService,public fb: FormBuilder,
     public _router: Router,
     private _clientesService: ClientesService,
     public dialog: MatDialog,
     private route: ActivatedRoute,
     private location:Location) {
 
+      this.getUser();
     this.router = _router;
     this.id = this.route.snapshot.params.id;
 
 
-    this.formServicioCliente = this.fb.group({
-      id_usr: [this.getIdUserLogueado()],
-      id_cliente: [""],
-      hiLunes: [""],
-      hfLunes: [""],
-      hiMartes: [""],
-      hfMartes: [""],
-      hiMiercoles: ["08:00"],
-      hfMiercoles: ["14:00"],
-      hiJueves: [""],
-      hfJueves: [""],
-      hiViernes: ["08:00"],
-      hfViernes: ["14:00"],
-      hiSabado: [""],
-      hfSabado: [""],
-      hiDomingo: [""],
-      hfDomingo: [""],
+
+  }
+  getUser() {
+    this.authService.getUser().subscribe((res: any) => {
+
+      this.user=res.data;
+
+    }, (error: any) => {
+      console.log(" on error");
+    }, () => {
+
+
 
     })
-
   }
 
   storeEntidad(_clientesService: ClientesService) {
 
-    console.log(this.formServicioCliente.value)
-    _clientesService.storeServicioCliente(this.formServicioCliente.value).subscribe((res: any) => {
+const id={
+  id_cliente:this.id
+}
+    const params={
+      ...this.formServicioCliente.value,
+      ...this.user,
+      ...id
 
-      if (res.estado == "error") {
+     }
+     console.log(params)
+    _clientesService.storeServicioCliente(params).subscribe((res: any) => {
+
+      if (res.estado === "error") {
         //    console.log(res.data.sqlMessage)
-        this.openDialog(res)
+        const mensajeError = res.data.code + " " + res.data.errno
+        Swal.fire(
+          'Ocurrió un error, consulte con el administrador del sistema',
+          "Error: " + mensajeError,
+          'error'
+        )
       } else {
-        this.openDialog(res)
+
+        Swal.fire(
+          'Operación exitosa!',
+          'Se ha creado un nuevo ' + this.titleSingular,
+          'success'
+        )
       }
 
     })
   }
 
-  openDialog(data) {  // METODO PARA ABRIR EL DIALOG (MODAL)
-    //console.log(data)
-    const dialogRef = this.dialog.open(DialogMensajeComponent, {
-      width: '500px',
-      height: '350px',
-      data: data
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
-
-
-
-
   registro() {
 
     if (this.formServicioCliente.valid) {
-      this.storeEntidad(this._clientesService);
+      Swal.fire({
+        title: 'Seguro de crear nuevo ' + this.titleSingular + '?',
+        text: 'Si confirma un nuevo ' + this.titleSingular + ' será creado en la base de datos',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
 
+         this.storeEntidad(this._clientesService);
+
+        }
+
+      })
     } else {
-      //this.openDialog("Complete correctamente el formulario")
+      Swal.fire(
+        'Error de validación de formulario',
+        "Error: Verifique los errores y requerimientos resaltados en el formulario",
+        'error'
+      )
     }
   }
 

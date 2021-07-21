@@ -1,4 +1,7 @@
-
+<button [printStyle]="{td : {'font-family': 'Roboto'}, h2 : {'border': 'solid 1px'}}" ngxPrint printSectionId="print-section" mat-raised-button color="secondary" aria-label="Example icon button with a delete icon">
+  <mat-icon>print</mat-icon>
+      Imprimir
+            </button>
 
 <mat-card class="example-card">
   <mat-card-header>
@@ -21,12 +24,13 @@
   </mat-form-field>
 
   <div class="mat-elevation-z8">
+
     <table mat-table [dataSource]="dataSource" matSort >
 
-
-      <ng-container matColumnDef="ID_CLIENTE">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.id_cliente}} </td>
+      <div id="print-section">
+      <ng-container  matColumnDef="ID_CLIENTE">
+        <th mat-header-cell  *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell  [hidden] *matCellDef="let row"> {{row.id_cliente}} </td>
       </ng-container>
 
 
@@ -46,7 +50,7 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> TELEFONO </th>
         <td mat-cell *matCellDef="let row"> {{row.telefono}} </td>
       </ng-container>
-
+    </div>
       <ng-container matColumnDef="ACCIONES">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> ACCIONES </th>
         <td mat-cell *matCellDef="let row">

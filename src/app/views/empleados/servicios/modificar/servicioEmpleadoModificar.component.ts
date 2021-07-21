@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common'
 import { ActivatedRoute } from '@angular/router';
 import { EmpleadosService } from '../../empleados.service';
-import { DialogMensajeComponent } from '../../mensajeDialog/mensajeDialog.component';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-update',
@@ -23,13 +24,12 @@ export class ServicioEmpleadoModificarComponent {
   router: Router;
   checked: boolean;
 
-  getIdUserLogueado(): number {
-    return 1;
-  }
+
 
 
   public titleSingular = "Servicio del Empleado"
   public entidad: IServicioFrecuenciaHoraria;
+  params: { id: number; semana: number; };
 
 
   constructor(public fb: FormBuilder,
@@ -46,20 +46,20 @@ export class ServicioEmpleadoModificarComponent {
     this.semana = this.route.snapshot.params.semana;
     this.nombre = this.route.snapshot.params.nombre;
 
-    const params = {
+     this.params = {
 
       id: this.id,
       semana:this.semana,
 
     }
-    this.getEntidadById(params, _service);
+    this.getEntidadById(this.params, _service);
 
   }
 
 
   formModificaEntidad = this.fb.group({
-    id_usr: [this.getIdUserLogueado()],
-     hiLunes: [""],
+
+    hiLunes: [""],
     hfLunes: [""],
     hiMartes: [""],
     hfMartes: [""],
@@ -84,10 +84,10 @@ export class ServicioEmpleadoModificarComponent {
       .subscribe((res: any) => {
 
         this.entidad = res.data;
-console.log(this.entidad)
+        console.log(this.entidad)
 
         this.formModificaEntidad = this.fb.group({
-          id_usr: [this.getIdUserLogueado()],
+
 
           hiLunes: [this.entidad.hiLunes],
           hfLunes: [this.entidad.hfLunes],
@@ -118,56 +118,60 @@ console.log(this.entidad)
 
   }
 
-  validaEmail() {
-    if (this.formModificaEntidad.get('email').hasError('required')) {
-      return 'Campo Obligatorio';
-    }
-
-    return this.formModificaEntidad.get('email').hasError('email') ? 'E-Mail Inválido' : '';
-  }
-  validaRequiredField() {
-    if (
-      this.formModificaEntidad.get('nombre').hasError('required')
-      || this.formModificaEntidad.get('telefono').hasError('required')
-      || this.formModificaEntidad.get('cuit').hasError('required')
-      || this.formModificaEntidad.get('direccion').hasError('required')
-      || this.formModificaEntidad.get('precio_hora').hasError('required')
-
-
-    ) {
-      return 'Campo Obligatorio';
-    }
-
-
-  }
   registro() {
 
     if (this.formModificaEntidad.valid) {
 
-      this.updateEntidad(this._service);
+      Swal.fire({
+        title: 'Seguro de realizar cambios en ' + this.titleSingular + '?',
+        text: 'Si confirma se modificará el  ' + this.titleSingular + ' en la base de datos',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+          this.updateEntidad(this._service);
+
+        }
+
+      })
 
     } else {
-
-      this.openDialog("Complete correctamente el formulario")
+      Swal.fire(
+        'Error de validación de formulario',
+        "Error: Verifique los errores y requerimientos resaltados en el formulario",
+        'error'
+      )
     }
   }
 
 
   updateEntidad(_service: EmpleadosService) {
 
-    console.log(this.formModificaEntidad.value);
-    _service.update(this.formModificaEntidad.value).subscribe((res: any) => {
-      //console.log(res)
-      /*  if (res.estado == "error") {
-         //    console.log(res.data.sqlMessage)
-         this.openDialog(res)
-       } else {
 
-         this.openDialog(res)
+ const data ={
+  ...this.formModificaEntidad.value,
+...this.params
+    }
+    _service.updateByIdySemana(data).subscribe((res: any) => {
 
-       } */
-      this.openDialog(res);
-
+      if (res.estado === "error") {
+        //    console.log(res.data.sqlMessage)
+        const mensajeError = res.data.code + " " + res.data.errno
+        Swal.fire(
+          'Ocurrió un error, consulte con el administrador del sistema',
+          "Error: " + mensajeError,
+          'error'
+        )
+      } else {
+        Swal.fire(
+          'Operación exitosa!',
+          'Cambios realizados correctamente en ' + this.titleSingular,
+          'success'
+        )
+      }
     })
   }
 
@@ -175,18 +179,6 @@ console.log(this.entidad)
     this.location.back()
   }
 
-  openDialog(data) {  // METODO PARA ABRIR EL DIALOG (MODAL)
-    //console.log(data)
-    const dialogRef = this.dialog.open(DialogMensajeComponent, {
-      width: '500px',
-      height: '350px',
-      data: data
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
 
 }
 

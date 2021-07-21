@@ -1,6 +1,6 @@
 import { ImesCalendario } from './../../interfaces/ImesCalendario';
 import { IEmpleado } from './../../interfaces/IEmpleado';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IServicioFrecuenciaHoraria } from '../../interfaces/IServicioFrecuenciaHoraria';
@@ -27,6 +27,7 @@ export class EmpleadosService {
   }
   update(dataForm: {}) {
 
+   // console.log(dataForm)
     return this.http.put<IEmpleado[]>(this.rutaApi+"/empleados/update", dataForm)
   }
 
@@ -41,9 +42,30 @@ export class EmpleadosService {
     return this.http.post<IServicioFrecuenciaHoraria>(this.rutaApi+"/servicios/getFrecuenciaByIdySemana",params)
   }
 
+
+  getServiciosAsignables(): Observable<IServicioFrecuenciaHoraria[]> {
+
+    return this.http.get<IServicioFrecuenciaHoraria[]>(this.rutaApi+"/servicios/verServiciosAsignables")
+  }
+
   storeServicioCliente(dataForm: {}) {
     return this.http.post<IEmpleado[]>(this.rutaApi+"/servicios/create", dataForm)
   }
+
+
+  asignarServicioAempleado(data:{}) {
+
+
+    return this.http.put(this.rutaApi+"/servicios/asignarServicioAempleado/", data)
+  }
+  updateByIdySemana(data:{}) {
+
+console.log(data)
+    return this.http.put(this.rutaApi+"/servicios/updateByIdySemana/", data)
+  }
+
+
+
 
 }
 

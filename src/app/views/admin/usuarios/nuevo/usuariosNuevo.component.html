@@ -1,0 +1,115 @@
+
+<div class="example-flex-container">
+  <button mat-raised-button color="secondary" (click)="volver()">Volver
+    <mat-icon><span class="material-icons">
+        chevron_left
+      </span></mat-icon>
+  </button>
+</div>
+<br>
+<div class="main-div">
+
+
+<mat-card class="example-card">
+  <mat-card-header>
+
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title></mat-card-title>
+
+      <p> Nuevo </p> <h2>{{titleSingular}}</h2>
+
+    <mat-card-subtitle></mat-card-subtitle>
+
+  </mat-card-header>
+  <mat-card-content>
+
+    <hr>
+
+      <form class="example-container" [formGroup]="this.formNuevaEntidad">
+
+
+
+          <mat-form-field  appearance="fill">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name">
+
+            <mat-error *ngIf="this.formNuevaEntidad.get('name')?.dirty">{{validaRequiredField()}}</mat-error>
+
+
+          </mat-form-field>
+
+
+          <mat-form-field  appearance="fill">
+            <mat-label>Telefono</mat-label>
+            <input matInput formControlName="telefono">
+            <mat-error *ngIf="this.formNuevaEntidad.get('telefono')?.dirty">{{validaRequiredField()}}</mat-error>
+
+
+
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+
+            <mat-error *ngIf="this.formNuevaEntidad.get('email')?.dirty">{{validaEmail()}}</mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Rol</mat-label>
+
+            <mat-select formControlName="id_rol">
+              <mat-option value=1>ROOT</mat-option>
+              <mat-option value=2>SUPERVISOR</mat-option>
+              <mat-option value=3>OPERADOR</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Empresa</mat-label>
+
+            <mat-select formControlName="id_empresa">
+              <mat-option value=1>SOFTWARE</mat-option>
+              <mat-option value=2>MYN SERVICIOS</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+
+
+
+
+<!--
+          <mat-form-field  appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" formControlName="password">
+            <mat-error *ngIf="this.formNuevaEntidad.get('password')?.dirty">{{validaRequiredField()}}</mat-error>
+
+          </mat-form-field>
+ -->
+
+
+
+
+              <button class="btn-block" mat-raised-button color="primary" (click)="registro()">Guardar {{titleSingular}}</button>
+
+
+
+      </form>
+
+
+
+
+
+
+
+
+
+
+
+  </mat-card-content>
+
+</mat-card>
+</div>

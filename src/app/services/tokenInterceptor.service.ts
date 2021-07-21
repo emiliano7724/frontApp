@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -16,8 +17,8 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    //const token = localStorage.getItem("token");
-    const token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7fSwiaWF0IjoxNjIzNjc2ODExLCJleHAiOjE2MjYyNjg4MTF9.iV3QDIAdxvxoBAD-KKM_y_QH7fE46Hm3eeehhp7l20I";
+    const token = localStorage.getItem("token");
+
     if(token){
       request = request.clone({headers: request.headers.set('x-token',token)})
     };
@@ -32,7 +33,6 @@ export class TokenInterceptor implements HttpInterceptor {
       }))
     // return next.handle(request);
   }
-
 
 
 }
